@@ -19,6 +19,14 @@ class User
     @comments ||= scrape_comments
   end
 
+  def refresh
+    @comments_page = parse_page(comments_url)
+    @posts_page = parse_page(submitted_url)
+    @user_page = parse_page(build_user_url(user_name))
+  end
+
+  private
+
   def comments_page
     @comments_page ||= parse_page(comments_url)
   end
@@ -30,14 +38,6 @@ class User
   def posts_page
     @posts_page ||= parse_page(submitted_url)
   end
-
-  def refresh
-    @comments_page = parse_page(comments_url)
-    @posts_page = parse_page(submitted_url)
-    @user_page = parse_page(build_user_url(user_name))
-  end
-
-  private
 
   def submitted_url
     "http://news.ycombinator.com/submitted?id=#{user_name}"
