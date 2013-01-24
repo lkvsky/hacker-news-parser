@@ -2,10 +2,10 @@ require 'rest_client'
 require 'nokogiri'
 require 'yaml'
 
-require './parser'
-require './posts'
-require './comments'
-require './users'
+load './parser.rb'
+load './posts.rb'
+load './comments.rb'
+load './users.rb'
 
 
 class HackerNews
